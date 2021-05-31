@@ -1,0 +1,12 @@
+<configuration>
+    <dataSource>
+        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        <property name="jdbcUrl"
+                  value="jdbc:mysql://127.0.0.1:3306/zdy_mybitis?useSSL=false&amp;characterEncoding=utf8&amp;serverTimezone=UTC"></property>
+        <property name="username" value="root"></property>
+        <property name="password" value="root"></property>
+    </dataSource>
+    <!--存放mapper.xml的全路径-->
+    <mapper resource="UserMapper.xml"></mapper>
+    <mapper resource="com/lagou/mapper/UserMapper.xml"></mapper>
+</configuration>
