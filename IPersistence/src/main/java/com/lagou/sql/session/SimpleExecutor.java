@@ -94,7 +94,7 @@ public class SimpleExecutor implements Executor {
         List<ParameterMapping> parameterMappingList = boundSql.getParameterMappingList();
         for (int i = 0; i < parameterMappingList.size(); i++) {
             //判断是否基础类型及其包装类
-            if (parameterTypeClass.isPrimitive() || ((Class) parameterTypeClass.getField("TYPE").get(null)).isPrimitive()) {
+            if (parameterTypeClass.isPrimitive() || isWrapClass(parameterTypeClass)) {
                 preparedStatement.setObject(i + 1, params[0]);
             } else {
                 ParameterMapping parameterMapping = parameterMappingList.get(i);
@@ -107,6 +107,14 @@ public class SimpleExecutor implements Executor {
         }
         //5执行SQL
         return preparedStatement.executeUpdate();
+    }
+
+    public boolean isWrapClass(Class clz) {
+        try {
+            return ((Class) clz.getField("TYPE").get(null)).isPrimitive();
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     private Class getClassType(String parameterType) throws ClassNotFoundException {
