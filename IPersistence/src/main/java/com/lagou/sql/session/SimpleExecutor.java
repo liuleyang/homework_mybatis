@@ -95,7 +95,7 @@ public class SimpleExecutor implements Executor {
         for (int i = 0; i < parameterMappingList.size(); i++) {
             //判断是否基础类型及其包装类
             if (parameterTypeClass.isPrimitive() || isWrapClass(parameterTypeClass)) {
-                preparedStatement.setObject(i + 1, params[0]);
+                preparedStatement.setObject(i + 1, params[i]);
             } else {
                 ParameterMapping parameterMapping = parameterMappingList.get(i);
                 String content = parameterMapping.getContent();
